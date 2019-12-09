@@ -2,11 +2,19 @@
 //
 
 #include "pch.h"
-#include <iostream>
 
-int main()
-{
-    std::cout << "Hello World!\n"; 
+using namespace std;
+
+int main(int argc, char** args) {
+    if (argc <= 1) {
+        cout << "No File." << endl;
+        system("pause");
+        return 0;
+    }
+    cv::Mat img = cv::imread(args[1], 0);
+    Transform trans(img);
+    trans.Image_to_TXT("./Image.txt");
+    system("pause");
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
