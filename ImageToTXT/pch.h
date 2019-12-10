@@ -11,9 +11,11 @@
 
 #include <iostream>
 #include <fstream>
+#include <unordered_map>
 #include <opencv.hpp>
 
 #include "Transform.h"
+#include "ConvertUtil.h"
 // TODO: 添加要在此处预编译的标头
 
 #endif //PCH_H

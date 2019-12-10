@@ -4,50 +4,18 @@ void Transform::Image_to_TXT(string path, unsigned int X, unsigned int Y, double
     resize(image, X, Y);
     // cv::GaussianBlur(image, image, cv::Size(5, 5), 3);
     sweep_blank(image, thresh);
-    //cv::imshow("1", image);
-    //cv::waitKey();
+    ConvertUtil *mapper = ConvertUtil::getInstance();
     ofstream out;
     out.open(path);
     for (int i = 0; i < image.rows; ++i) {
         for (int j = 0; j < image.cols; ++j) {
-            switch (image.at<uchar>(i, j) / 25) {
-            case 0:
-                out << '@';
-                break;
-            case 1:
-                out << '%';
-                break;
-            case 2:
-                out << '#';
-                break;
-            case 3:
-                out << 'F';
-                break;
-            case 4:
-                out << 'A';
-                break;
-            case 5:
-                out << 'H';
-                break;
-            case 6:
-                out << 'I';
-                break;
-            case 7:
-                out << '(';
-                break;
-            case 8:
-                out << ';';
-                break;
-            case 9:
-                out << '.';
-                break;
-            default:
-                out << ' ';
-                break;
-            }
+            out << mapper->getChar(image.at<uchar>(i, j) / 25);
+            cout << mapper->getChar(image.at<uchar>(i, j) / 25);
         }
         out << endl;
+        cout << endl;
     }
+    out << "\n\n需要在空格与字符宽度相等的文本编辑器下查看" << endl;
     out.close();
 }
 
